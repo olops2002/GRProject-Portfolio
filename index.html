@@ -1,45 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GRProject Portfolio – olops2002</title>
+  <meta charset="UTF-8" />
+  <title>Oluseyi Emmanuel Olokode – Data Portfolio</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; color: #333; }
-    h1, h2 { color: #004080; }
-    img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
-    a { color: #0066cc; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #004080;
+      color: #fff;
+      padding: 30px 20px;
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar img {
+      width: 140px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #fff;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar p {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #bbe0ff;
+      text-decoration: none;
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    /* Main Content */
+    .main {
+      padding: 40px;
+      flex-grow: 1;
+    }
+
+    .main h1, .main h2 {
+      color: #004080;
+    }
+
+    .screenshot, iframe {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .code {
+      background: #eee;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      overflow-x: auto;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #0066cc;
+    }
   </style>
 </head>
 <body>
-  <h1>GRProject Portfolio</h1>
-  <p><strong>By:</strong> Oluseyi Emmanuel Olokode (<a href="https://github.com/olops2002" target="_blank">olops2002</a>)</p>
 
-  <h2>📊 Project Summary</h2>
-  <p>This project explores reintegration outcomes using a custom-built SQL Server database and interactive Power BI dashboards. It covers economic, social, and psychosocial metrics.</p>
+  <div class="sidebar">
+    <img src="profile.jpg" alt="Oluseyi Emmanuel Olokode" />
+    <h2>Oluseyi Emmanuel Olokode</h2>
+    <p>Data Analyst | SQL + Power BI | Reintegration Projects</p>
+    <a href="https://github.com/olops2002" target="_blank">GitHub</a>
+    <a href="mailto:youremail@example.com">Email</a>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
+  </div>
 
-  <h2>🗃️ SQL Server Database Design</h2>
-  <p>I designed and normalized a 15-table relational database with foreign key constraints, covering health, education, migration, NFI distribution, and reintegration outcomes.</p>
+  <div class="main">
+    <h1>📊 GRProject – Reintegration Analytics Portfolio</h1>
+    <p>
+      GRProject is a humanitarian reintegration analytics platform built using Microsoft SQL Server and Power BI.
+      It monitors and evaluates support outcomes across economic, social, and psychosocial domains.
+    </p>
 
-  <h2>🧠 Key SQL Queries</h2>
-  <ul>
-    <li>Returnee sustainability status based on threshold scoring</li>
-    <li>Cross-sectional analysis by gender and country of return</li>
-    <li>Dashboard-ready views for Power BI integration</li>
-  </ul>
+    <h2>📈 Power BI Dashboard (Live)</h2>
+    <iframe title="Power BI Report" width="100%" height="600"
+      src="PASTE-YOUR-EMBED-LINK-HERE"
+      frameborder="0" allowFullScreen="true">
+    </iframe>
 
-  <h2>📈 Power BI Dashboards</h2>
-  <p>
-    <img src="https://via.placeholder.com/700x400?text=Power+BI+Dashboard+Screenshot" alt="Power BI Screenshot">
-    <br>
-    <em>Screenshot of dashboard showing sustainability thresholds and regional outcomes</em>
-  </p>
+    <h2>🗃️ SQL Server Design</h2>
+    <p>Normalized relational schema with 15+ tables covering demographics, education, health, medical, and NFI tracking. Below is the schema and a sample query:</p>
+    <img src="grproject-schema.png" alt="GRProject Schema" class="screenshot" />
 
-  <h2>🔗 Links</h2>
-  <ul>
-    <li><a href="https://github.com/olops2002/GRProject-Portfolio" target="_blank">View GitHub Repo</a></li>
-    <li><a href="#">Live Power BI Dashboard (if published)</a></li>
-  </ul>
+    <h3>📄 Sample Query: Sustainable Returnees</h3>
+    <div class="code">
+SELECT CaseID, FirstName, LastName, EcoR, SocR, PyschR<br>
+FROM Reintegration_Main<br>
+JOIN MonitoringandEvalution_Main ON Reintegration_Main.CaseID = MonitoringandEvalution_Main.CaseID<br>
+JOIN Person_Main ON Person_Main.PersonID = Reintegration_Main.PersonID<br>
+WHERE EcoR &gt;= 0.51 AND SocR &gt;= 0.51 AND PyschR &gt;= 0.51;
+    </div>
+  </div>
 
 </body>
 </html>
-Initial portfolio page

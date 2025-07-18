@@ -156,13 +156,13 @@
       <summary><strong>Demographics – Gender & Age Breakdown</strong></summary>
       <pre>
 SELECT 
-  pi.Gender AS Gender,
-  DATEDIFF(YEAR, pi.DateOfBirth, GETDATE()) AS Age,
+  Gender,
+  DATEDIFF(YEAR, DateOfBirth, GETDATE()) AS Age,
   COUNT(*) AS Total
 FROM 
-  PersonalInformation pi
+  Person_Main
 GROUP BY 
-  pi.Gender, DATEDIFF(YEAR, pi.DateOfBirth, GETDATE())
+  Gender, DATEDIFF(YEAR, DateOfBirth, GETDATE())
 ORDER BY 
   Age;
       </pre>
@@ -172,17 +172,24 @@ ORDER BY
       <summary><strong>Vulnerability – Top 5 Primary Vulnerabilities</strong></summary>
       <pre>
 SELECT 
-  vm.Primary_Vulnerability,
+  Primary_Vulnerability,
   COUNT(*) AS Total
 FROM 
-  Vulnerability_Main vm
+  Vulnerability_Main
 GROUP BY 
-  vm.Primary_Vulnerability
+  Primary_Vulnerability
 ORDER BY 
   Total DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
       </pre>
     </details>
+
+    <h2>🗂️ GRProject SQL Schema Overview</h2>
+    <p>
+      Below is the Entity Relationship Diagram (ERD) representing the schema of the <strong>GRProject</strong> database.
+      This structure was designed to simulate a realistic reintegration tracking system and supports all Power BI visuals on this portfolio.
+    </p>
+    <img src="grproject-schema.png" alt="GRProject Database Schema" style="width:100%; max-width:1000px; border-radius:8px; margin:20px 0;" />
 
     <div class="footer">
       <p>&copy; 2025 Oluseyi Emmanuel Olokode | Portfolio powered by GitHub Pages</p>

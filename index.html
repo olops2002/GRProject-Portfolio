@@ -46,6 +46,7 @@
       text-decoration: none;
       font-size: 14px;
       margin: 8px 0;
+      display: block;
     }
 
     .main {
@@ -56,6 +57,14 @@
 
     .main h1, .main h2, .main strong {
       color: #2C4770;
+    }
+
+    .main h2 {
+      background-color: #e3ecf9;
+      padding: 10px 15px;
+      border-left: 5px solid #004080;
+      border-radius: 4px;
+      margin-top: 40px;
     }
 
     iframe {
@@ -78,6 +87,24 @@
     ul li {
       margin-bottom: 8px;
     }
+
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin: 12px 0;
+      padding: 6px 10px;
+      background-color: #f0f4ff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    details pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -86,9 +113,9 @@
     <img src="profile.jpg" alt="Oluseyi Emmanuel Olokode" />
     <h2>Oluseyi Emmanuel Olokode</h2>
     <p>Data Analyst | Power BI Specialist</p>
-    <a href="https://github.com/olops2002" target="_blank">GitHub</a>
-    <a href="mailto:oluwaseyi.olokode@gmail.com">Email</a>
-    <a href="https://www.linkedin.com/in/oluwaseyi-olokode-24537741" target="_blank">LinkedIn</a>
+    <a href="https://github.com/olops2002" target="_blank">💻 GitHub</a>
+    <a href="mailto:oluwaseyi.olokode@gmail.com">✉️ Email</a>
+    <a href="https://www.linkedin.com/in/oluwaseyi-olokode-24537741" target="_blank">🔗 LinkedIn</a>
   </div>
 
   <div class="main">
@@ -121,6 +148,41 @@
       src="https://app.powerbi.com/view?r=eyJrIjoiZjJmMDFmNTAtYzI5OC00MDFkLTgyZDQtNGQ1Zjc3MjI1ZThlIiwidCI6IjEwNDEyZDRmLTkzYzAtNDFkZi04ZmE0LTk2OTRkNTA1YTg4ZiJ9"
       frameborder="0" allowFullScreen="true">
     </iframe>
+
+    <h2>📦 SQL Projects & Query Documentation</h2>
+    <p>This section contains real SQL scripts written for the GRProject Power BI dashboard. It showcases my ability to design efficient queries that power each visual on the dashboard.</p>
+
+    <details>
+      <summary><strong>Demographics – Gender & Age Breakdown</strong></summary>
+      <pre>
+SELECT 
+  pi.Gender AS Gender,
+  DATEDIFF(YEAR, pi.DateOfBirth, GETDATE()) AS Age,
+  COUNT(*) AS Total
+FROM 
+  PersonalInformation pi
+GROUP BY 
+  pi.Gender, DATEDIFF(YEAR, pi.DateOfBirth, GETDATE())
+ORDER BY 
+  Age;
+      </pre>
+    </details>
+
+    <details>
+      <summary><strong>Vulnerability – Top 5 Primary Vulnerabilities</strong></summary>
+      <pre>
+SELECT 
+  vm.Primary_Vulnerability,
+  COUNT(*) AS Total
+FROM 
+  Vulnerability_Main vm
+GROUP BY 
+  vm.Primary_Vulnerability
+ORDER BY 
+  Total DESC
+OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
+      </pre>
+    </details>
 
     <div class="footer">
       <p>&copy; 2025 Oluseyi Emmanuel Olokode | Portfolio powered by GitHub Pages</p>

@@ -149,8 +149,8 @@
       frameborder="0" allowFullScreen="true">
     </iframe>
 
-    <h2>📦 SQL Projects & Query Documentation</h2>
-    <p>This section contains real SQL scripts written for the GRProject Power BI dashboard. It showcases my ability to design efficient queries that power each visual on the dashboard.</p>
+    <h2>📦 SQL Database Scehma & Query for all sections </h2>
+    <p>This section contains real SQL scripts written for the GRProject Power BI dashboard Query. It showcases my ability to design efficient queries that power each visual on the dashboard.</p>
 
    <details open>
   <summary><strong>Demographics </strong></summary>
@@ -184,7 +184,7 @@ JOIN [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID;
 </details>
 
     <details open>
-  <summary><strong>Vulnerability – Disaggregated Profile by Type, Age & Gender</strong></summary>
+  <summary><strong>Vulnerability Query </strong></summary>
   <pre>
 SELECT 
     pim.PersonID,
@@ -221,7 +221,7 @@ WHERE pim.PrimaryVulnerabilityID IS NOT NULL OR pim.SecondaryVulnerabilityID IS 
 </details>
 
   <details open>
-  <summary><strong>Reintegration Section </strong></summary>
+  <summary><strong>Reintegration Query </strong></summary>
   <pre>
 SELECT 
     c.CountryName AS CountryOfReturn,
@@ -377,7 +377,7 @@ LEFT JOIN
 </details>
     
 <details open>
-  <summary><strong>MHPSS – Mental Health and Psychosocial Support Overview</strong></summary>
+  <summary><strong>MHPSS – Mental Health and Psychosocial Support Query</strong></summary>
   <pre>
 SELECT 
     c.CountryName AS CountryOfReturn,
@@ -448,7 +448,7 @@ LEFT JOIN
   </pre>
 </details>
 <details open>
-  <summary><strong>Monitoring & Evaluation – Reintegration Sustainability & Community Indicators</strong></summary>
+  <summary><strong>Monitoring & Evaluation – Reintegration Sustainability & Community Query</strong></summary>
   <pre>
 SELECT  
     C.CountryName AS CountryOfReturn,

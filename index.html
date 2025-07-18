@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Oluseyi Emmanuel Olokode – Data Portfolio</title>
+  <title>Oluseyi Emmanuel Olokode – Power BI Portfolio</title>
   <style>
     body {
       margin: 0;
@@ -13,7 +13,6 @@
       min-height: 100vh;
     }
 
-    /* Sidebar */
     .sidebar {
       background-color: #004080;
       color: #fff;
@@ -49,7 +48,6 @@
       margin: 8px 0;
     }
 
-    /* Main Content */
     .main {
       padding: 40px;
       flex-grow: 1;
@@ -59,26 +57,16 @@
       color: #004080;
     }
 
-    .screenshot, iframe {
+    iframe {
       max-width: 100%;
       border-radius: 10px;
-      margin: 20px 0;
+      margin-top: 20px;
     }
 
-    .code {
-      background: #eee;
-      padding: 10px;
-      border-radius: 6px;
-      font-family: monospace;
-      overflow-x: auto;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    a {
-      color: #0066cc;
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #888;
     }
   </style>
 </head>
@@ -87,36 +75,27 @@
   <div class="sidebar">
     <img src="profile.jpg" alt="Oluseyi Emmanuel Olokode" />
     <h2>Oluseyi Emmanuel Olokode</h2>
-    <p>Data Analyst | SQL + Power BI | Reintegration Projects</p>
+    <p>Data Analyst | Power BI Specialist</p>
     <a href="https://github.com/olops2002" target="_blank">GitHub</a>
     <a href="mailto:youremail@example.com">Email</a>
     <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
   </div>
 
   <div class="main">
-    <h1>📊 GRProject – Reintegration Analytics Portfolio</h1>
+    <h1>📊 GRProject – Reintegration Analytics Dashboard</h1>
     <p>
-      GRProject is a humanitarian reintegration analytics platform built using Microsoft SQL Server and Power BI.
-      It monitors and evaluates support outcomes across economic, social, and psychosocial domains.
+      This interactive dashboard presents analysis on reintegration outcomes for returnees across Economic, Social, and Psychosocial dimensions. 
+      Built using Power BI, it enables insight into sustainability thresholds, support types, and post-return community acceptance.
     </p>
 
-    <h2>📈 Power BI Dashboard (Live)</h2>
-    <iframe title="Power BI Report" width="100%" height="600"
-      src="src="https://app.powerbi.com/view?r=eyJrIjoiZjJmMDFmNTAtYzI5OC00MDFkLTgyZDQtNGQ1Zjc3MjI1ZThlIiwidCI6IjEwNDEyZDRmLTkzYzAtNDFkZi04ZmE0LTk2OTRkNTA1YTg4ZiJ9"
+    <h2>🔗 Live Power BI Dashboard</h2>
+    <iframe title="GRProject" width="100%" height="600"
+      src="https://app.powerbi.com/view?r=eyJrIjoiZjJmMDFmNTAtYzI5OC00MDFkLTgyZDQtNGQ1Zjc3MjI1ZThlIiwidCI6IjEwNDEyZDRmLTkzYzAtNDFkZi04ZmE0LTk2OTRkNTA1YTg4ZiJ9"
       frameborder="0" allowFullScreen="true">
     </iframe>
 
-    <h2>🗃️ SQL Server Design</h2>
-    <p>Normalized relational schema with 15+ tables covering demographics, education, health, medical, and NFI tracking. Below is the schema and a sample query:</p>
-    <img src="grproject-schema.png" alt="GRProject Schema" class="screenshot" />
-
-    <h3>📄 Sample Query: Sustainable Returnees</h3>
-    <div class="code">
-SELECT CaseID, FirstName, LastName, EcoR, SocR, PyschR<br>
-FROM Reintegration_Main<br>
-JOIN MonitoringandEvalution_Main ON Reintegration_Main.CaseID = MonitoringandEvalution_Main.CaseID<br>
-JOIN Person_Main ON Person_Main.PersonID = Reintegration_Main.PersonID<br>
-WHERE EcoR &gt;= 0.51 AND SocR &gt;= 0.51 AND PyschR &gt;= 0.51;
+    <div class="footer">
+      <p>&copy; 2025 Oluseyi Emmanuel Olokode | Portfolio powered by GitHub Pages</p>
     </div>
   </div>
 

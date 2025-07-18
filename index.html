@@ -152,21 +152,36 @@
     <h2>📦 SQL Projects & Query Documentation</h2>
     <p>This section contains real SQL scripts written for the GRProject Power BI dashboard. It showcases my ability to design efficient queries that power each visual on the dashboard.</p>
 
-    <details>
-      <summary><strong>Demographics – Gender & Age Breakdown</strong></summary>
-      <pre>
-SELECT 
-  Gender,
-  DATEDIFF(YEAR, DateOfBirth, GETDATE()) AS Age,
-  COUNT(*) AS Total
+   <details open>
+  <summary><strong>Demographics </strong></summary>
+  <pre>
+SELECT
+    p.PersonID,
+    p.CaseId,
+    p.FirstName,
+    p.LastName,
+    p.DateOfBirth,
+    p.ArrivalDate,
+    YEAR(p.ArrivalDate) AS ArrivalYear,
+    DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) AS Age,
+    CASE 
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) < 18 THEN 'Under 18'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
+        ELSE '60+'
+    END AS AgeGroup,
+    c.CountryName,
+    r.Homeregion AS HomeRegion,
+    g.Gender,
+    e.LevelName AS EducationLevel
 FROM 
-  Person_Main
-GROUP BY 
-  Gender, DATEDIFF(YEAR, DateOfBirth, GETDATE())
-ORDER BY 
-  Age;
-      </pre>
-    </details>
+    [dbo].[Personal information_main] p
+JOIN [dbo].[Country] c ON p.CountryID = c.CountryID
+JOIN [dbo].[Region] r ON p.HomeRegion = r.ID
+JOIN [dbo].[gender] g ON p.GenderID = g.GenderID
+JOIN [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID;
+  </pre>
+</details>
 
     <details>
       <summary><strong>Vulnerability – Top 5 Primary Vulnerabilities</strong></summary>

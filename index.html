@@ -1,96 +1,200 @@
-<section>
-  <h2>📦 SQL Projects & Query Documentation</h2>
-  <p>This section contains real SQL scripts written for the GRProject Power BI dashboard. It supports understanding how each visual was powered by structured SQL queries.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oluseyi Emmanuel Olokode – Power BI Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f7f9fc;
+      color: #2C4770;
+      display: flex;
+      min-height: 100vh;
+    }
 
-  <details>
-    <summary><strong>▶ Demographics</strong></summary>
-    <pre><code>
-SELECT
-    p.PersonID,
-    p.CaseId,
-    p.FirstName,
-    p.LastName,
-    p.DateOfBirth,
-    p.ArrivalDate,
-    YEAR(p.ArrivalDate) AS ArrivalYear,
-    DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) AS Age,
-    CASE 
-        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) < 18 THEN 'Under 18'
-        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
-        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
-        ELSE '60+'
-    END AS AgeGroup,
-    c.CountryName,
-    r.Homeregion AS HomeRegion,
-    g.Gender,
-    e.LevelName AS EducationLevel
-FROM 
-    [dbo].[Personal information_main] p
-JOIN [dbo].[Country] c ON p.CountryID = c.CountryID
-JOIN [dbo].[Region] r ON p.HomeRegion = r.ID
-JOIN [dbo].[gender] g ON p.GenderID = g.GenderID
-JOIN [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID;
-    </code></pre>
-  </details>
+    .sidebar {
+      background-color: #004080;
+      color: #fff;
+      padding: 30px 20px;
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  <details>
-    <summary><strong>▶ Vulnerability</strong></summary>
-    <pre><code>
+    .sidebar img {
+      width: 140px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #fff;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar p {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #bbe0ff;
+      text-decoration: none;
+      font-size: 14px;
+      margin: 8px 0;
+      display: block;
+    }
+
+    .main {
+      padding: 40px;
+      flex-grow: 1;
+      color: #2C4770;
+    }
+
+    .main h1, .main h2, .main strong {
+      color: #2C4770;
+    }
+
+    .main h2 {
+      background-color: #e3ecf9;
+      padding: 10px 15px;
+      border-left: 5px solid #004080;
+      border-radius: 4px;
+      margin-top: 40px;
+    }
+
+    iframe {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin: 12px 0;
+      padding: 6px 10px;
+      background-color: #f0f4ff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    details pre {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <img src="profile.jpg" alt="Oluseyi Emmanuel Olokode" />
+    <h2>Oluseyi Emmanuel Olokode</h2>
+    <p>Data Analyst | Power BI Specialist</p>
+    <a href="https://github.com/olops2002" target="_blank">💻 GitHub</a>
+    <a href="mailto:oluwaseyi.olokode@gmail.com">✉️ Email</a>
+    <a href="https://www.linkedin.com/in/oluwaseyi-olokode-24537741" target="_blank">🔗 LinkedIn</a>
+  </div>
+
+  <div class="main">
+    <h1>📊 GRProject – A Demo Humanitarian Analytics Project</h1>
+    <p>
+      This interactive dashboard analyzes voluntary return and reintegration outcomes for stranded Ghanaian citizens who participated in the Government of Ghana’s Assisted Voluntary Return and Reintegration (AVRR) initiative.
+      Built using Power BI with entirely fictional data sourced from a simulated SQL Server database, this project is intended to mimic a real-world analysis environment.
+      It provides insights into return support, reintegration assistance, monitoring and evaluation outcomes, and post-return community acceptance across economic, social, and psychosocial dimensions.
+    </p>
+
+    <p>
+      <strong>Note:</strong> This project is developed for portfolio demonstration purposes only. All data presented is fictitious and does not represent real individuals, organizations, or outcomes.
+    </p>
+
+    <p>
+      The dashboard contains six main sections that allow users to explore the project from different thematic perspectives:
+    </p>
+
+    <ul>
+      <li><strong>Demographics</strong> – Arrival years, countries of return, gender disaggregation, and age groups.</li>
+      <li><strong>Vulnerability Section</strong> – Primary and secondary vulnerabilities including victims of trafficking, unaccompanied minors, and returnees with medical conditions.</li>
+      <li><strong>Reintegration Section</strong> – Types of support received across economic, psychosocial, and social domains.</li>
+      <li><strong>MHPSS Section</strong> – Access to mental health and psychosocial support services and self-reported health status.</li>
+      <li><strong>Medical Support Section</strong> – Delivery of medical aid and referrals disaggregated by vulnerability and demographic indicators.</li>
+      <li><strong>Monitoring & Evaluation Section</strong> – Sustainability scores (EcoR, SocR, PsyR), thresholds achieved, and indicators like community acceptance and family reunification.</li>
+    </ul>
+
+    <h2>🔗 Live Power BI Dashboard</h2>
+    <iframe title="GRProject" width="100%" height="600"
+      src="https://app.powerbi.com/view?r=eyJrIjoiZjJmMDFmNTAtYzI5OC00MDFkLTgyZDQtNGQ1Zjc3MjI1ZThlIiwidCI6IjEwNDEyZDRmLTkzYzAtNDFkZi04ZmE0LTk2OTRkNTA1YTg4ZiJ9"
+      frameborder="0" allowFullScreen="true">
+    </iframe>
+
+    <h2>📦 SQL Projects & Query Documentation</h2>
+    <p>This section contains real SQL scripts written for the GRProject Power BI dashboard. It showcases my ability to design efficient queries that power each visual on the dashboard.</p>
+
+    <details>
+      <summary><strong>Demographics – Gender & Age Breakdown</strong></summary>
+      <pre>
 SELECT 
-    pim.PersonID,
-    pim.CaseId,
-    c.CountryName,
-    r.Homeregion AS HomeRegion,
-    g.Gender,
-    pv.VulnerabilityName AS PrimaryVulnerability,
-    sv.VulnerabilityName AS SecondaryVulnerability,
-    CASE 
-        WHEN pv.VulnerabilityName IS NOT NULL AND sv.VulnerabilityName IS NOT NULL 
-        THEN 'Yes' 
-        ELSE 'No' 
-    END AS TwoVul_Types,
-    CASE 
-        WHEN DATEDIFF(YEAR, pim.DateOfBirth, GETDATE()) < 18 THEN 'Under 18'
-        WHEN DATEDIFF(YEAR, pim.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
-        WHEN DATEDIFF(YEAR, pim.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
-        ELSE '60+'
-    END AS AgeGroup,
-    YEAR(pim.ArrivalDate) AS ArrivalYear
-FROM dbo.[Personal information_main] pim
-LEFT JOIN dbo.Country c ON pim.CountryID = c.CountryID
-LEFT JOIN dbo.Region r ON pim.HomeRegion = r.ID
-LEFT JOIN dbo.gender g ON pim.GenderID = g.GenderID
-LEFT JOIN dbo.Vulnerability pv ON pim.PrimaryVulnerabilityID = pv.VulnerabilityID
-LEFT JOIN dbo.Vulnerability sv ON pim.SecondaryVulnerabilityID = sv.VulnerabilityID
-WHERE pim.PrimaryVulnerabilityID IS NOT NULL OR pim.SecondaryVulnerabilityID IS NOT NULL;
-    </code></pre>
-  </details>
+  Gender,
+  DATEDIFF(YEAR, DateOfBirth, GETDATE()) AS Age,
+  COUNT(*) AS Total
+FROM 
+  Person_Main
+GROUP BY 
+  Gender, DATEDIFF(YEAR, DateOfBirth, GETDATE())
+ORDER BY 
+  Age;
+      </pre>
+    </details>
 
-  <details>
-    <summary><strong>▶ Reintegration</strong></summary>
-    <pre><code>
-[Paste full Reintegration SQL here due to length – suggest using code blocks or CDN for large code]
-    </code></pre>
-  </details>
+    <details>
+      <summary><strong>Vulnerability – Top 5 Primary Vulnerabilities</strong></summary>
+      <pre>
+SELECT 
+  Primary_Vulnerability,
+  COUNT(*) AS Total
+FROM 
+  Vulnerability_Main
+GROUP BY 
+  Primary_Vulnerability
+ORDER BY 
+  Total DESC
+OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
+      </pre>
+    </details>
 
-  <details>
-    <summary><strong>▶ Mhpss</strong></summary>
-    <pre><code>
-[Paste full Mhpss SQL here due to length – same approach]
-    </code></pre>
-  </details>
+    <h2>🗂️ GRProject SQL Schema Overview</h2>
+    <p>
+      Below is the Entity Relationship Diagram (ERD) representing the schema of the <strong>GRProject</strong> database.
+      This structure was designed to simulate a realistic reintegration tracking system and supports all Power BI visuals on this portfolio.
+    </p>
+    <img src="grproject-schema.png" alt="GRProject Database Schema" style="width:100%; max-width:1000px; border-radius:8px; margin:20px 0;" />
 
-  <details>
-    <summary><strong>▶ Medical</strong></summary>
-    <pre><code>
-[Paste full Medical SQL here due to length – consider external file if large]
-    </code></pre>
-  </details>
+    <div class="footer">
+      <p>&copy; 2025 Oluseyi Emmanuel Olokode | Portfolio powered by GitHub Pages</p>
+    </div>
+  </div>
 
-  <details>
-    <summary><strong>▶ Monitoring and Evaluation</strong></summary>
-    <pre><code>
-[Paste full Monitoring and Evaluation SQL here due to length – best kept modular]
-    </code></pre>
-  </details>
-</section>
+</body>
+</html>

@@ -80,6 +80,27 @@
       font-size: 13px;
       color: #888;
     }
+
+    details summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin: 12px 0;
+      padding: 6px 10px;
+      background-color: #f0f4ff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    details a {
+      display: block;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: #2C4770;
+    }
+
+    details a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -91,9 +112,6 @@
     <a href="mailto:oluwaseyi.olokode@gmail.com">✉️ Email</a>
     <a href="https://www.linkedin.com/in/oluwaseyi-olokode-24537741" target="_blank">🔗 LinkedIn</a>
     <hr style="width: 100%; border: 1px solid #337ab7;">
-    <a href="index.html">📖 Introduction</a>
-    <a href="grp.html">📊 Power BI – GRProject</a>
-    <a href="python.html">🐍 Python Projects</a>
   </div>
 
   <div class="main">
@@ -106,8 +124,14 @@
         This portfolio showcases a collection of analytical projects I’ve developed to simulate real-world scenarios and tell compelling data stories. Whether you're here to explore my humanitarian analytics work or evaluate my technical skills, you'll find structured projects, well-documented SQL logic, and embedded dashboards built with purpose.
       </p>
       <p>
-        Please navigate through the links on the left to view my highlighted work. More projects will be added soon.
+        More projects will be added soon.
       </p>
+
+      <h3>📁 View My Projects</h3>
+      <details>
+        <summary>📊 SQL and Power BI Projects</summary>
+        <a href="GRP.html" target="_blank">🟢 GRP Project – Reintegration Dashboard</a>
+      </details>
     </div>
 
     <p class="footer">&copy; 2025 Oluseyi Emmanuel Olokode | Portfolio Introduction</p>

@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SSRS Project – Demographics Dashboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f8fc;
+      color: #2C4770;
+      margin: 0;
+      padding: 0;
+    }
 
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #2C4770;
+      margin-top: 30px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+
+    ul {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+
+    .screenshot {
+      width: 100%;
+      max-width: 900px;
+      border: 1px solid #ccc;
+      margin-top: 25px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+    }
+
+    details summary {
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 40px;
+      padding: 10px;
+      background-color: #eaf2fb;
+      border-radius: 5px;
+      border: 1px solid #ccddee;
+    }
+
+    pre {
+      background-color: #f0f4ff;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      font-size: 14px;
+      font-family: Consolas, monospace;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 40px;
+      color: #004080;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 SSRS Project: Demographics Dashboard</h1>
+    <p>This project demonstrates my ability to develop interactive and insightful reports using SQL Server Reporting Services (SSRS). The dashboard provides a demographic breakdown of clients based on gender, education level, and age group.</p>
+
+    <h2>🧩 Key Features:</h2>
+    <ul>
+      <li>Dynamic pie chart segmented by gender groupings</li>
+      <li>Bar chart comparing education levels across population</li>
+      <li>Grouped vertical bar chart for age cohorts</li>
+    </ul>
+
+    <img src="ssrs-dashboard.png" alt="SSRS Demographics Dashboard" class="screenshot" />
+
+    <details>
+      <summary>📜 View SQL Script Used for SSRS Report</summary>
+      <pre>
+SELECT
+    p.PersonID,
+    p.CaseId,
+    p.DateOfBirth,
+    p.ArrivalDate,
+    YEAR(p.ArrivalDate) AS ArrivalYear,
+    DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) AS Age,
+    CASE 
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) &lt; 18 THEN 'Under 18'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
+        ELSE '60+'
+    END AS AgeGroup,
+    c.CountryName,
+    r.Homeregion AS HomeRegion,
+    g.Gender,
+    e.LevelName AS EducationLevel
+FROM 
+    [dbo].[Personal information_main] p
+JOIN 
+    [dbo].[Country] c ON p.CountryID = c.CountryID
+JOIN 
+    [dbo].[Region] r ON p.HomeRegion = r.ID
+JOIN 
+    [dbo].[gender] g ON p.GenderID = g.GenderID
+JOIN 
+    [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID;
+      </pre>
+    </details>
+
+    <a href="index.html" class="back">← Back to Portfolio</a>
+  </div>
+</body>
+</html>

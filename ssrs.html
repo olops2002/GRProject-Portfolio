@@ -104,7 +104,7 @@
     <img src="customlist.png" alt="Dynamic report with filters" class="screenshot" />
 
     <details>
-      <summary>📜 View SQL Script Used for SSRS Report</summary>
+      <summary>📜 View SQL Script Used for charts</summary>
       <pre>
 SELECT
     p.PersonID,
@@ -135,6 +135,67 @@ JOIN
     [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID;
       </pre>
     </details>
+
+
+    <details>
+      <summary>📜 View SQL Script Used for ssrs table data</summary>
+      <pre>
+SELECT
+    p.PersonID,
+    p.CaseId,
+    p.DateOfBirth,
+    p.ArrivalDate,
+    YEAR(p.ArrivalDate) AS ArrivalYear,
+    DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) AS Age,
+    CASE 
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) < 18 THEN 'Under 18'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
+        WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
+        ELSE '60+'
+    END AS AgeGroup,
+    c.CountryName,
+    r.Homeregion AS HomeRegion,
+    g.Gender,
+    e.LevelName AS EducationLevel
+FROM 
+    [dbo].[Personal information_main] p
+JOIN 
+    [dbo].[Country] c ON p.CountryID = c.CountryID
+JOIN 
+    [dbo].[Region] r ON p.HomeRegion = r.ID
+JOIN 
+    [dbo].[gender] g ON p.GenderID = g.GenderID
+JOIN 
+    [dbo].[EducationLevel] e ON p.EducationLevelID = e.EducationLevelID
+WHERE
+    (
+        @StartDate IS NULL 
+        OR TRY_CAST(p.ArrivalDate AS DATE) >= TRY_CAST(@StartDate AS DATE)
+    ) AND
+    (
+        @EndDate IS NULL 
+        OR TRY_CAST(p.ArrivalDate AS DATE) <= TRY_CAST(@EndDate AS DATE)
+    ) AND
+    (
+        @Gender IS NULL 
+        OR LTRIM(RTRIM(g.Gender)) = LTRIM(RTRIM(@Gender))
+    ) AND
+    (
+        @Country IS NULL 
+        OR LTRIM(RTRIM(c.CountryName)) = LTRIM(RTRIM(@Country))
+    ) AND
+    (
+        @AgeGroup IS NULL 
+        OR @AgeGroup = '' 
+        OR @AgeGroup = CASE 
+            WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) < 18 THEN 'Under 18'
+            WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 18 AND 35 THEN '18–35'
+            WHEN DATEDIFF(YEAR, p.DateOfBirth, GETDATE()) BETWEEN 36 AND 60 THEN '36–60'
+            ELSE '60+'
+        END
+    )
+    </details>
+
 
     <a href="index.html" class="back">← Back to Portfolio</a>
   </div>
